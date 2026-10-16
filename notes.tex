@@ -1,0 +1,91 @@
+\documentclass[12pt]{amsart}
+
+\usepackage[svgnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[capitalise]{cleveref}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage[only,boxslash]{stmaryrd}
+\usepackage{comment}
+\usepackage[margin=1.5in]{geometry}
+% \usepackage[colorlinks=true, urlcolor=blue, linkcolor=blue, citecolor=red]{hyperref}
+\usetikzlibrary{perspective} % Load the library
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\newcommand{\topsp}{\mathsf{Top}}		% category of topological space
+\newcommand{\cx}{\mathsf{Ch}}			% category of chain complexes
+\newcommand{\Grp}{\mathsf{Grp}}			% category of groups
+\newcommand{\Ab}{\mathsf{Ab}}			% category of abelian groups
+\newcommand{\Set}{\mathsf{Set}}			% category of sets
+\newcommand{\GrAb}{\mathsf{GrAb}}			% category of graded groups
+\newcommand{\GrRing}{\mathsf{GrRing}}		% category of graded rings
+\newcommand{\rproj}[1]{\mathbb{RP}^{#1}} % Real projective space
+\newcommand{\cproj}[1]{\mathbb{CP}^{#1}} % Real projective space
+\newcommand{\sphere}[1]{\mathbb{S}^{#1}} % Sphere
+\newcommand{\emspace}[2]{\mathbb{K}(#1, #2)} % Eilenberg–MacLane space
+\newcommand{\CDGA}{\mathsf{CDGA}/\mathbb Q}		% category of Commutaive Differential Graded Rational Algebra 
+\DeclareMathOperator{\im}{im}			% Image of a map
+\DeclareMathOperator{\id}{id}			% identity morphism
+\DeclareMathOperator*{\colim}{colim}	% colimit
+\DeclareMathOperator{\op}{op}			% opposite 
+
+
+% \prescript comes from mathtools package, but seems to position too high
+% \newcommand{\presup}[2]{\prescript{#1}{}{#2}}
+% Intended usage: \presup{\boxslash}{\mathcal{R}}
+
+
+% Brings in todonotes package, adding custom commands for each of us.
+% \usepackage[disable]{todo} will hide these notes.
+\usepackage{todo}
+
+\title{MATH 635 Lecture Notes}
+
+
+%\usepackage{xr}
+%\externaldocument[635-]{notes-635} % For refering to the outside document.
+
+\begin{document}
+	
+	\input{Title}
+	
+	\newpage
+	\begin{center}
+		\vspace*{\fill}
+		These notes partly follow \cite{griffiths_rational_2013}.
+		\vspace*{\fill}
+	\end{center}
+	
+	\newpage
+	
+	\tableofcontents
+	
+	\newpage
+	
+	\part{Homotopy Theory Background}
+
+	\input{Lectures/Topic-1}
+	
+	\input{Lectures/Topic-2}
+	
+	\part{Concepts of Rational Homotopy Theory}
+	\part{Further Topics}
+	
+	\newpage
+	\bibliographystyle{plain}
+	\bibliography{Ref}
+\end{document}
