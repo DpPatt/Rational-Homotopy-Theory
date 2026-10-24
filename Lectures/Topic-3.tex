@@ -1,3 +1,72 @@
 %!TEX root = notes.tex
 % Notes from --
 % Typed by: Durga
+
+\newpage
+\section{CW-Complexes}
+For a space \(Y\) and any map \(f: \partial	\mathbb D^n \to Y\) we can form a space 
+\[Y \cup_f \mathbb D^n \coloneq (T \sqcup \mathbb D^n)/\sim\]
+where \(x \sim f(f(x))\) for all \(x \in \partial \mathbb D^n\).
+This is the resulting space of attaching a \(n\)-cell to \(Y\) via attaching map \(f\).
+
+\begin{definition}[Cell complex]
+	By cell complex \(\mathcal K\) we mean a sequence of space
+	\[\varnothing = K^{(-1)} \subseteq K^{(0)} \subseteq K_{(1)} \subseteq \dots \subseteq K^{(n)} \subseteq \dots,\]
+	where \(K^{(0)}\) is the discrete set of points, and \(K^{(n)}\) (called the \(n\)-th skeleton) is obtained form \(K^{(n-1)}\) by attaching \(n\)-cells to \(K^{(n-1)}\) via some attaching maps, and we also have 
+	\[\bigcup_{n \geq 0} K^{(n)} = K.\]
+\end{definition}
+
+\begin{definition}
+	A CW-complex \(X\) is a cell complex satisfying the following two properties:
+	\begin{description}
+		\item[Closure Finiteness] the closure of each \(n\)-cell in \(X\) intersects with only finitely many other simplex.
+		\item[Weak Topology] a subset \(U \subseteq X\) is open if \( A \cap\,  e_\alpha\) is open for all cells \(e_\alpha\) in the complex \(X\).
+	\end{description}
+	The CW stands for the "\textbf{C}losure finite \textbf{W}eak topology."
+	The CW-complex satisfy the closure finite property, that says the closure of every cell in the complex intersects only a finite number of other cells.
+	This property ensures that the space remains locally well-behaved and compact subsets only interact with finitely many cells, preventing wild, infinite fragmentation (such as a single cell whose boundary closure wraps around infinitely many discrete points).
+	For more details refer to \cite[p.~221-223]{Whitehead_1949}.
+\end{definition}
+
+%A CW-complex \(X\) is a sequence of space
+%\[\varnothing = X^{(-1)} \subseteq X^{(0)} \subseteq X_{(1)} \subseteq \dots \subseteq X^{(n)} \subseteq \dots,\]
+%where \(X^{(0)}\) is the discrete set of points, and \(X^{(n)}\) (called the \(n\)-th skeleton) is obtained form \(X^{(n-1)}\) by attaching \(n\)-cells via some attaching maps, and we also have 
+%\[\bigcup_{n \geq 0} X^{(n)} = X.\]
+%The topology on the CW-complex is declared to be the weak topology defined as:
+%a subset \(U \subseteq X\) is open if \( A \cap X^{(n)}\) is open for all \(n \geq 0\).
+
+\begin{example}
+	For all \(n \geq 1\), \(\sphere{n}\) has a CW-complex structure with one \(0\)-cell and one \(n\)-cell.
+	It can also be given a CW structure with two \(k\)-cells for all \(k = 0, 1, \dots, n\).
+	
+	The real projective space \(\rproj{n}\) has a CW structure with one \(k\)-cell for all \(k \in \{0, 1, \dots, n\}\).
+	
+	The complex projective space \(\cproj{n}\) has a CW structure with one \(k\)-cell for all even \(k \in \{0, 2, \dots, 2n\}\).
+\end{example}
+
+\begin{definition}[Homotopy Extension Property(HEP)]
+	Let $i : A \to X$ be a continuous map.
+	We say $i$ satisfy the homotopy extension property if for any homotopy $f: A \to Y^I$ and a map $\tilde{f}_0: X \to Y$ satisfying 
+	\[\tilde{f}_0 \circ i = \mathrm{ev}_0 \circ f\]
+	there exists an extension of $f$ to a homotopy
+	\[\tilde{f} : X \to Y^I\] 
+	such that 
+	\[\tilde{f} \circ i = f.\]
+	This can be expressed as the commutative diagram 
+	\[\begin{tikzcd}
+		A\ar[r, "f"]\ar[d, "i"'] & Y^I \ar[d, "\mathrm{ev}_0"] \\
+		X \ar[r, "\tilde{f}_0"']\ar[ru, "\exists \tilde{f}", dashed]& Y
+	\end{tikzcd}\]
+	It is easy to see that such a map \(i: A \to X\) has to be an inclusion (exercise).
+	So instead of saying \(i : A \to X\) satisfy HEP we can say that the pair \((X,A)\) satisfy the HEP with \(A \subseteq X\).
+\end{definition}
+
+\begin{proposition}
+	For CW complex \(X\) and its sub-complex \(A\) the pair \((X,A)\) satisfy the HEP. 
+\end{proposition}
+\begin{proof}[Sketch of proof:]
+	
+\end{proof}
+
+
+

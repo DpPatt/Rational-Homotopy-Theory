@@ -39,10 +39,13 @@
 \newcommand{\sphere}[1]{\mathbb{S}^{#1}} % Sphere
 \newcommand{\emspace}[2]{\mathbb{K}(#1, #2)} % Eilenberg–MacLane space
 \newcommand{\CDGA}{\mathsf{CDGA}/\mathbb Q}		% category of Commutaive Differential Graded Rational Algebra 
+\DeclareMathOperator{\Hom}{Hom}			% homomorphisms
 \DeclareMathOperator{\im}{im}			% Image of a map
 \DeclareMathOperator{\id}{id}			% identity morphism
 \DeclareMathOperator*{\colim}{colim}	% colimit
 \DeclareMathOperator{\op}{op}			% opposite 
+\DeclareMathOperator{\Ext}{Ext}			% Ext functor
+\DeclareMathOperator{\Tor}{Tor}			% Tor functor
 
 
 % \prescript comes from mathtools package, but seems to position too high
@@ -76,12 +79,17 @@
 	\tableofcontents
 	
 	\newpage
-	
 	\part{Homotopy Theory Background}
 
 	\input{Lectures/Topic-1}
 	
 	\input{Lectures/Topic-2}
+	\input{Lectures/Topic-3}
+	\input{Lectures/Topic-4}
+	\input{Lectures/Topic-5}
+	\input{Lectures/Topic-6}
+	\input{Lectures/Topic-7}
+	\input{Lectures/Topic-8}
 	
 	\part{Concepts of Rational Homotopy Theory}
 	\part{Further Topics}

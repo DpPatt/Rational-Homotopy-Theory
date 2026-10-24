@@ -280,15 +280,6 @@ We call this homology as simplicial homology, and it will be isomorphic to the \
 	Find out he homology of the square (\(I \times I\)), cylinder (\(\sphere{1} \times I\)), torus(\(\sphere{1} \times \sphere{1}\)), mobius strip(\(\sphere{1} \rtimes_1 I\)), real projective plane (\(\rproj{2}\)) using the simplest \(\Delta\) complex structure on them.
 \end{exercise}
 
-\begin{theorem}[Homotopy Invariance]
-	If \(f,g: X \to Y\) are homotopic maps then they induce the same maps in the homology \(f_\ast = g_\ast\).
-\end{theorem}
-
-\begin{corollary}
-	If \(X\) and \(Y\) are homotopy equivalent then \(H_\ast(X) \cong H_\ast(Y)\) are isomorphic.
-\end{corollary}
-Using this corollary we can show that \(\real{m}\) is not homeomorphic to \(\real{n}\) if \(n \neq m\).
-
 \subsection{Reduced homology:}
 For convenience it is very useful to have a alternate version of homology when our space \(X\) is non-empty.
 Think of it like homology of based spaces.
@@ -313,6 +304,17 @@ This is due to the excision theorem, i.e., theorem 2.20 of \cite{Hatcher2002}.
 This shows that if we fix \(x_0 \in X\), relative homology \(H_\ast(X, x_0) \cong \tilde{H}_\ast(X)\).
 This is why we said to think of reduced homology as the homology of the based space.
 
+The basic properties of homology are:
+
+\begin{theorem}[Homotopy Invariance]
+	If \(f,g: X \to Y\) are homotopic maps then they induce the same maps in the homology \(f_\ast = g_\ast\).
+\end{theorem}
+
+\begin{corollary}
+	If \(X\) and \(Y\) are homotopy equivalent then \(H_\ast(X) \cong H_\ast(Y)\) are isomorphic.
+\end{corollary}
+Using this corollary we can show that \(\real{m}\) is not homeomorphic to \(\real{n}\) if \(n \neq m\).
+
 \begin{theorem}[LES of Pairs]
 	There is a long exact sequence(LES) of pairs \((X,A)\) given as 
 	\[\dots \to H_{n+1}(X,A) \xrightarrow{\partial_\ast} H_n(A) \xrightarrow{i_\ast} H_n(X) \xrightarrow{j_\ast} H_n(X,A) \xrightarrow{\partial_\ast} H_{n-1}(A) \to \dots\]
@@ -323,19 +325,162 @@ This is why we said to think of reduced homology as the homology of the based sp
 	Calculate the homology groups of \(\sphere{n}\) using the LES of Pair. 
 \end{exercise}
 
+\begin{theorem}[Excision Theorem]
+	\label{Excision}
+	If \(U \subseteq Y \subseteq X\) is such that the closure of \(U\) is contained in the interior of \(Y\), then we have 
+	\[H_\ast(X\backslash U,Y \backslash U) \cong H_\ast(X,Y).\]
+\end{theorem}
+
 \begin{theorem}[Mayer–Vietoris sequence]
+	\label{MV-Sequence}
 	If a space \(X\) has a decomposition as \(X = U \cup V\) with \(U, V\) open in \(X\), then there is a long exact sequence 
 	\[\dots \to H_{n+1}(X) \xrightarrow{\partial_\ast} H_n(U\cap V) \xrightarrow{i_\ast} H_n(U) \oplus H_n(V) \xrightarrow{j_\ast} H_n(X) \xrightarrow{\partial_\ast} H_{n-1}(U\cap V) \to \dots\]
 \end{theorem}
 
+The \cref{Excision} and \cref{MV-Sequence} are equivalent.
+If we have two homology theories with one containing \cref{MV-Sequence} in its axioms and other containing \cref{Excision} in its axiom, then both the theories are same.
+
+
+
 \section{Cohomology}
-	If we start with a increasing chain complex \(C^\ast(X) \)
- 
+	If we apply the functor \(\Hom(-, \mathbb Z)\) to the chain complex for homology, we obtain a cochain complex 
+	\[\dots \to \Hom(C_{n-1}(X), \mathbb Z) \xrightarrow{\partial_n^\ast} \Hom(C_n(X), \mathbb Z) \xrightarrow{\partial_{n+1}^\ast} \Hom(C_{n+1}(X), \mathbb Z) \to \dots,\]
+	We denote the cochian groups as \(C^n(X) = C^n(X;\mathbb Z) \coloneq \Hom(C_n(X), \mathbb Z)\), and the coboundary maps as \(\delta_n = \partial_{n}^\ast\).
+	So the above cochain complex becomes
+	\[\dots \to C^{n-1}(X;\mathbb Z) \xrightarrow{\delta_n} C^n(X;\mathbb Z) \xrightarrow{\delta_{n+1}} C^{n+1}(X;\mathbb Z) \to \dots.\]
+	For \(\alpha \in C^{n-1}(X;\mathbb Z)\),
+	\[\delta_n(\alpha) = \alpha\circ \partial_n\]
+ 	Since \(\partial^2 = 0\), we get \(\delta^2 = 0\).
+ 	The homology of the above cochain complex is called the cohomology of the space \(X\).
+ 	The type of cohomology we get is depended upon the chain complex for the homology we choose.
+ 	If we follow the above process for singular chain complex then we get singular cohomology, we denote is as \(H^\ast(X;\mathbb Z)\).
+ 	If it is the \(\Delta\)-complex chain complex we choose, then we get \(\Delta\)-complex cohomology \(H^\ast_\Delta(X, \mathbb Z)\).
+ 	Similarly for simplicial cohomology, reduced cohomology.
+ 	All of these cosmologies are isomorphic.
+ 	
+ 	We also have notion of relative cohomology, long exact sequence of pairs and Mayer-Vietoris sequence for cohomology, with all arrows reversed. 
+ 	
+ 	We can define homology \(H_\ast(X; G)\) with coefficients in any abelian groups \(A\) as the homology of the chain complex 
+ 	\[\dots \to C_n(X) \otimes G \to C_{n-1}(X) \otimes G \to \dots.\]
+ 	We can also define cohomology with coefficients \(H^\ast(X; G)\) with coefficient in abelian group \(G\) as the cohomology of the cochain complex
+ 	\[\dots \to \Hom(C_n(X), G) \to \Hom(C_{n+1}(X), G) \to \dots.\]
+ 	If \(G\) is not a ring then we don't have a product structure in cohomology with coefficients \(H^\ast(X; G)\).
+ 	
+ 	There ae algebraic properties of cohomology:
+ 	\vspace{0.5 cm}
+ 	
+ 	\begin{enumerate}
+ 		\item Cohomology usually comes with a \emph{graded product structure} in it called cup product.
+ 		For singular cochains it is defined as follows:
+ 		\begin{align*}
+ 			C^k(X) \times C^\ell(X) &\xrightarrow{\smile} C^{k + \ell}(X)\\
+ 			(\phi,\psi) &\mapsto \phi \smile \psi,
+ 		\end{align*}
+ 		\[(\phi\smile \psi)(\sigma) = \phi(fr_k(\sigma)).\psi(bk_{\ell}(\sigma)),\]
+ 		where \(fr_k(\sigma)\) is the restriction of \(\sigma\) to the  \(k\)-dimensional face of \(\Delta^{k +\ell}\) spanned by the first \(k+1\) vertices \(\{v_0, \dots v_k\}\), and \(bk_\ell(\sigma)\) is the restriction of \(\sigma\) to the \(\ell\) dimensional face of \(\Delta^{k+\ell}\) spanned by last \(\ell + 1\) vertices \(\{v_k, \dots, v_{k+\ell}\}\) (with appropriate identification of simplex).
+ 		
+ 		This product is associative, bilinear, unital in the cochain level.
+ 		It descends to a maps
+ 		\[H^k(X, \mathbb Z) \otimes H^\ell(X, \mathbb Z) \to H^{k + \ell}(X, \mathbb Z).\]
+ 		This map is graded commutative on cohomology, but not in the cochain.
+ 		The cup product satisfy the Leibniz rule in homology(not in chain level):
+ 		for \(\alpha \in H^k(X)\) and \(\beta \in H^\ell (X)\)
+ 		\[\delta(\alpha \smile \beta) = \delta(\alpha) \smile \beta + (-1)^k \alpha \smile \delta(\beta).\]
+ 		\item There is a cap product:
+ 		\[H^k(X) \otimes H_\ell(X) \xrightarrow{\frown} H_{\ell-k}(X),\]
+ 		defined in the chain level 
+ 		\[\phi \frown \sigma = \phi(fr_k(\sigma)) bk_{\ell - k}(\sigma).\]
+ 		
+ 		\item For space \(X, Y\) and a commutative ring with unity \(R\) external cup product is a map 
+ 		\[H^\ast(X,R) \otimes H^\ast(Y,R) \xrightarrow{\times} H^\ast(X\times Y , R),\]
+ 		given by \(\phi \times \psi = \pi_1^\ast(\phi) \smile \pi_2^\ast(\psi)\), where \(\pi_1,\pi_2\) are projection maps.
+ 		
+ 		\item There is a co-associative, graded-commutative co-multiplication structure for homology with field coefficients
+ 		\[\Delta:  H_n(X; \mathbb F) \to \bigoplus_{i+j = n} H_i(X; \mathbb F) \otimes H_j(X; \mathbb F),\]
+ 		induced by diagonal map \(\Delta : X \to X \times X\) and it is dual to the cup product in cohomology.
+ 		This is not true with integer coefficients.
+ 	\end{enumerate}
+ 	
+ 	
+ 	\subsection{Universal Coefficient Theorems}
+ 	There are two versions of this theorem, one for homology and other for cohomology.
+ 	It is called Universal Coefficient Theorem because it express homology  and cohomology with arbitrary coefficients in terms of homology with \(\mathbb Z\) coefficients.
+ 	
+ 	The free resolution of an abelian group \(H\) is the exact sequence 
+ 	\[\dots \to F_2 \to F_1 \to F_0 \to H,\]
+ 	with each \(F_i\) free.
+ 	If we dualize this sequence by functor \(\Hom(-, \mathbb G)\) we get a chain complex( not an exact sequence) which is exact at \(0\)-th position. 
+ 	\[\dots \leftarrow F_2^\ast \leftarrow F_1^\ast \leftarrow F_0^\ast \leftarrow H^\ast.\]
+ 	We define \(\Ext(H,G)\) the first cohomology group of the above sequence (other homologies are trivial).
+ 	This groups is independent of the free resolution of the group \(H\).
+ 	It only depends upon the group \(H\) and \(G\).
+ 	This bifunctor \(\Ext(-,-)\) has some nice property and it is highly computable.
+ 	The Universal Coefficient Theorem for cohomology states the following:
+ 	\begin{theorem}
+ 		There is a surjective map \( H^n(X;G) \to \Hom(H_n(X),G)\) with kernel \(\Ext(H_{n-1}(X), G)\).
+ 		Hence, there is a short exact sequence 
+ 		\[0 \to \Ext(H_{n-1}(X), G) \to H^n(X;G) \to \Hom(H_n(X),G) \to 0.\]
+ 		And this short exact sequence splits but not naturally.
+ 		This sequence is natural with respects to the continuous maps \(X \to Y\).
+ 	\end{theorem}
+ 	
+ 	This gives us some helpful corollaries given below.
+ 	\begin{corollary}
+ 		If \(H_n(X)\) is finitely generated for for each \(n\), then 
+ 		\[H^n(X;\mathbb Z) \cong H_n(X;\mathbb Z)/T(H_n(X;\mathbb Z)) \bigoplus T(H_{n-1}(X;\mathbb Z)),\]
+ 		Where \(T(H)\) is the torsion subgroup of group \(H\).
+ 	\end{corollary}
+ 	\begin{corollary}
+ 		For any field \(\mathbb F\) of characteristic zeros, 
+ 		\[H^n(X;\mathbb F) \cong H_n(X;\mathbb F).\] 
+ 	\end{corollary}
+ 	
+ 	If we apply the functor \(- \otimes G\) to the free resolution of the group \(H\) we get an chain complex that is exact at \(0\)-th position,
+ 	\[\dots \to F_2 \otimes G \to F_1 \otimes G \to F_0 \otimes G \to H \otimes G.\]
+ 	We define \(\Tor(H,G)\) the first homology group of the sequence (other homologies are trivial).
+ 	This groups is independent of the free resolution of the group \(H\).
+ 	It only depends upon the group \(H\) and \(G\).
+ 	This bifunctor \(\Tor(-,-)\) has some nice property and it is highly computable.
+ 	Now the Universal Coefficient Theorem for homology.
+ 	\begin{theorem}
+ 		There is a (non natural) split short exact sequence 
+ 		\[0 \to H_n(X) \otimes G \to H_n(X;G) \to \Tor(H_{n-1}(X), G) \to G.\]
+ 		This sequence is natural with respects to the continuous maps \(X \to Y\).
+ 	\end{theorem}
+ 	
+ 	\subsection{K\"unneth Formula}
+ 	The K\"unneth formulas describe the homology or cohomology of a product space in terms of the homology or cohomology of the factors.
+ 	There is more general versions of K\"unneth formula for homology and cohomology involving \(\Tor\) and \(\Ext\) terms.
+ 	Here, we are going to talk about a special case of those versions.
+ 	
+ 	\begin{theorem}
+ 	For the CW- complexes \(X, Y\) the cross product is an isomorphism of rings if the cohomology group \(H^k(Y, R)\) is finitely generated free \(R\)-module for all \(k\). 	
+ 	\end{theorem}
+ 	Equivalently, we can define cross product map for homologies
+ 	\[H_\ast(X,R) \otimes H_\ast(Y,R) \xrightarrow{\times} H_\ast(X\times Y , R).\]
+ 	This map is an isomorphism if \(H_i(X,R)\) is free for all \(i\).
+ 	
+ 	\subsection{Poincar\'e Duality}
+ 	This relates the homology and cohomology of a compact, orientable manifold.
+ 	This says
+ 	\begin{theorem}
+ 		For compact, oriented, \(n\)-dimensional manifold there is a isomorphism 
+ 		\[PD: H^k(M) \to H_{n-k}(M),\]
+ 		which is given by the cap product with the fundamental class \([M] \in H_n(M)\).
+ 	\end{theorem}
+ 	
+ 	For a manifold \(X\) the cup product \(a \smile b\) can sometimes be calculated in terms of signed intersection of cycles.
+ 	For example, on the space \(X = S^1 \times S^1\)
+ 	
+ 	\begin{align*}
+ 		&H^2(X) \stackrel{PD}{\cong} H_0(X) \cong \mathbb Z, &\text{ generates by }\ 1,\\
+ 		&H^1(X) \stackrel{PD}{\cong} H_1(X) \cong \mathbb Z + \mathbb Z, &\text{ lets say generated by }\ a, b,\\
+ 		&H^2(X) \stackrel{PD}{\cong} H_0(X) \cong \mathbb Z, &\text{ lets say generated by }\ c.
+ 	\end{align*}
+ 	Then, \(c\smile c = a \smile c = b \smile c = 0\) because higher cohomology groups are trivial and 
+ 	\(a \smile b = c\).
+ 	\vspace{0.5 cm}
 
-
-
-
-
-
-
-
+ 	If \(M\) is a smooth manifold then \(H^\ast(M;\mathbb R)\) can be computed as cohomology of the de Rham chain complex \(C_{dR}(M)\) of differential forms.
+ 	In this complex, the product is graded commutative in cochain level.
+ 	For more details look at \cite{Bott_Tu1982}
