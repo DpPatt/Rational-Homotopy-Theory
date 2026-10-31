@@ -5,7 +5,7 @@
 \newpage
 \section{CW-Complexes}
 For a space \(Y\) and any map \(f: \partial	\mathbb D^n \to Y\) we can form a space 
-\[Y \cup_f \mathbb D^n \coloneq (T \sqcup \mathbb D^n)/\sim\]
+\[Y \cup_f \mathbb D^n \coloneq (Y \sqcup \mathbb D^n)/\sim\]
 where \(x \sim f(f(x))\) for all \(x \in \partial \mathbb D^n\).
 This is the resulting space of attaching a \(n\)-cell to \(Y\) via attaching map \(f\).
 
@@ -18,10 +18,11 @@ This is the resulting space of attaching a \(n\)-cell to \(Y\) via attaching map
 
 \begin{definition}
 	A CW-complex \(X\) is a cell complex satisfying the following two properties:
-	\begin{description}
-		\item[Closure Finiteness] the closure of each \(n\)-cell in \(X\) intersects with only finitely many other simplex.
-		\item[Weak Topology] a subset \(U \subseteq X\) is open if \( A \cap\,  e_\alpha\) is open for all cells \(e_\alpha\) in the complex \(X\).
-	\end{description}
+	\begin{enumerate}
+		\item \emph{Closure Finiteness:}  The closure of each \(n\)-cell in \(X\) intersects with only finitely many other simplex.
+		\item \emph{Weak Topology:}  A subset \(U \subseteq X\) is open if \( A \cap\,  e_\alpha\) is open for all cells \(e_\alpha\) in the complex \(X\).
+	\end{enumerate}
+
 	The CW stands for the "\textbf{C}losure finite \textbf{W}eak topology."
 	The CW-complex satisfy the closure finite property, that says the closure of every cell in the complex intersects only a finite number of other cells.
 	This property ensures that the space remains locally well-behaved and compact subsets only interact with finitely many cells, preventing wild, infinite fragmentation (such as a single cell whose boundary closure wraps around infinitely many discrete points).
@@ -65,8 +66,146 @@ This is the resulting space of attaching a \(n\)-cell to \(Y\) via attaching map
 	For CW complex \(X\) and its sub-complex \(A\) the pair \((X,A)\) satisfy the HEP. 
 \end{proposition}
 \begin{proof}[Sketch of proof:]
-	
+	For a single cell, a homotopy \(\partial D^n \times I \to Y\) and a map \(D^n \times \{0\} \to Y\) is the same information as a map 
 \end{proof}
 
+\begin{proposition}[Simplicial Approximation]
+	\label{simplical approx.}
+	For all CW-complex \(X\) there is a simplicial complex \(K\) that is homotopy equivalent to \(X\).
+\end{proposition}
+For the proof see \cite[\S 2]{griffiths_rational_2013}. 
+Proof uses the fact that CW pairs have HEP.
+
+\begin{theorem}[CW-approximation theorem, \cite{Hatcher2002}]
+	Let $X$ be a topological space $X$ there is a $CW$-complex $X_{CW}$ and a weak homotopy equivalence $f: X_{CW} \to X$. 
+	This $CW$-complex is unique up to homotopy.
+\end{theorem}
+\begin{proof}[sketch of the proof for existance]
+	The proof is by induction.
+	We can always find a set $A_0$ that is bijective to the path components of $X$ and a map $f: A_0 \to X$ such that given two $a,b \in A_0$, $f(a)$ and $f(b)$ don't lie in the same path component of $X$.
+	Suppose we have defined the map $f_{k-1}: A_{k-1} \to X$, where $A_{k-1}$ is a $CW$-complex of dimension $\leq k-1$.
+	In the $k$-th step if necessary we will glue $k$-cells (i.e. $D^k$) to $A_{k-1}$ in such a way that the map $f_{k-1}: A_{k-1} \to X$ can be extended to a map $f_k: A_k \to X$ (i.e. $f_k\mid A_{k-1} = f_{k-1}$) that satisfy the following: 
+	For each base point $a \in A_0$,
+	\begin{enumerate}
+		\item $(f_k)_\ast : \pi_{k-1}(A_k, a) \to \pi_{k-1}(X, f(a))$ is injective, and
+		\item $(f_k)_\ast : \pi_{k}(A_k, a) \to \pi_{k}(X, f(a))$ is surjective.
+	\end{enumerate}
+	For the full proof see \cite[\S4.1]{Hatcher2002}.
+\end{proof}
+Let's do an example for a better understanding.
+\begin{example}
+	Let us consider $X = S^2$.
+	\[\pi_n(S^2) = \left\{\begin{array}{ll}
+		\mathbb{Z}, & n=2\\
+		0, & n \neq 2. 
+	\end{array}\right.\]
+	In our proof $A_0$ is a singleton set $\{\ast\}$, and choose $f_0: \{\ast\} \to S^2$ as 
+	\[f_0(\ast) = (0,0,1) \in S^2 \subseteq R^3.\]
+	Notice that $(f_0)_\ast : \pi_1(\{\ast\}, \ast) \to \pi_1(S^2, f(\ast))$ is an isomorphism.
+	Hence, for $k =1$, we don't need to glue any $1$-disks to $A_0$.
+	We take $A_1 = A_0$ and $f_1 = f_0$.
+	Notice that $f_1$ satisfy the property (1) and (2) given in the above proof.
+	
+	For $k =2$, we take a $2$-cell $D^2$, glue it to $A_1= \{\ast\}$ by the map $\partial D^2 \cong S^1 \to \{\ast\}$ to $A_1$.
+	Then, $A_2 \cong S^2$ and extend the map $f_1: A_1 \to S^2$ to $f_2: A_2 \to S^2$ such that 
+	\[f_2(\ast) = (0,0,1), \text{ it is a weak homotopy equivalence.}\]
+\end{example}
+
+\begin{remark}
+	This theorem does not says that every space is homeomorphic to a CW complex.
+	This only states the existence of a CW complex that is homotopy equivalent to the space.
+	There are many spaces who do not have CW-structure on it, for example topologist's sine curve, Hawaiian ring and infinite dimensional Banach space etc.
+\end{remark}
+
+\begin{theorem}[Mapping Cylinder]
+	For any map \(f: X \to Y\) of spaces, the space
+	\[M_f \coloneq ((X \times I) \sqcup Y)/\sim,\]
+	where \((x,1) \sim f(x)\) is homotopy equivalent to \(Y\), and the inclusion \(X \cong X \times \{0\} \hookrightarrow M_f\) has the HEP.
+	In other words, this inclusion is a cofibration.
+\end{theorem}
+\begin{proof}
+	Before the proof recall that a map from the quotient space \(m: M_f \to Z\) to any space \(Z\) is actually two maps
+	\begin{align*}
+		&m_1:X \times I \to Z,\\
+		&m_2: Y \xrightarrow{\id} Z, 
+	\end{align*}
+	such that \(m_1(x,1) = m_2(f(x))\).
+	
+	The inclusion \(Y \hookrightarrow M_f\) and the map \(M_f \to Y\) defined as
+	\begin{align*}
+		&X \times I \to Y,\ \ ((x,t) \mapsto f(x)\ \forall\ t)\\
+		&Y \xrightarrow{\id} Y, 
+	\end{align*}
+	are homotopy inverses of each others.
+	
+	Let \(H: X \times \{0\} \to Z^I\) and \(\alpha: M_f \to Z\) are given such that \(H(x,0)(0)= \alpha(x,0)\).
+	Consider the map \(\tilde H : M_f \to Z^I\) given as:
+	\begin{align*}
+		&\tilde H_1 : (X \times I) \to Z^I,\\
+		&\tilde H_1(x,s)(t) =\begin{cases}
+		 	\alpha(x,s-t)	 & t \geq s\\
+		 	H(x,0)(s-t) & t\leq s
+		 \end{cases} \\
+		&\tilde H_2 : Y \to Z^I, \ \ (\tilde H_2(y)(t) = \alpha(y)\ \forall \ t)
+	\end{align*}
+	Since \(\tilde H_1(x,1)(t) = \alpha(x,1) =  \alpha(f(x))  = \tilde H_2(f(x))(t)\), this map is well defined.
+	Notice that \(\tilde H(p, 0) = \alpha(p)\) for all \(p \in M_f\),
+	And
+	\begin{align*}
+		\tilde H(x,0,t) = \alpha(x,0) = 
+	\end{align*}
+	\textbf{[FIXME]}
+\end{proof}
+From this theorem, we understand that when we are concerned with the homotopy type of a space, any map can, up to homotopy, be replaced by a cofibration. Therefore, if a statement holds for the resulting cofibration, it also holds for the original map.
+
+\subsection{CW Homology}
+For a CW complex \(X\) there is a chain complex \(C_\ast^{CW}(X)\) where 
+\[C_n^{CW}(X)\coloneq \mathbb Z\{n-\text{cells of }X\},\]
+and the boundary map 
+\[\partial_n: C_n^{CW}(X) \to C_{n-1}^{CW}(X)\]
+is given by the composition
+\[H_n(X^{(n)}, X^{(n-1)}) \xrightarrow{\partial} H_{n-1}(X^{(n-1)})  \xrightarrow{j_{n-1}} H_n(X^{(n-1)}, X^{(n-2)}).\]
+This is induced by the attachiing maps of \(n\)-cells.
+For a \(n\)-cell \(e_\alpha\), the collection of integers \(d_{\alpha\beta}\), where \(\beta \) runs over number of \((n-1)\) cells, that determines the boundary map \(\partial_n\) is given by the number of times \(\partial e_\alpha\) winds arround the \((n-1)\) cell \(e_\beta\)(counted with a sign) via the attaching map.
+Homology of this chian complex is called cellular homology \(H_\ast^{CW}(X)\)of the complex \(X\).
+\begin{theorem}
+	The cellular homology \(H_\ast^{CW}(X)\) is isomorphic to the singular homology \(H_\ast(X)\).
+\end{theorem}
+For more details refer to \cite[\S 2.2]{Hatcher2002}.
+
+\begin{example}
+	\begin{enumerate}
+		\item For \(X = \sphere{1} \times \sphere{1}\), the cellualr chain complex
+		\(C_\ast^{CW}(X)\) is 
+		\[0 \to \mathbb Z \xrightarrow{0} \mathbb{Z} \oplus \mathbb Z \xrightarrow{0} \mathbb Z \to 0.\]
+		\item For \(X = \rproj{n}\), the cellualr chain complex \(C_\ast^{CW}(X)\) is
+		\[0 \to \mathbb Z \to \dots \to \mathbb Z \xrightarrow{2} \mathbb Z \xrightarrow{0} \mathbb Z\xrightarrow{2} \mathbb Z \xrightarrow{0} \mathbb Z \to 0.\]
+		\item For \(X = \cproj{n}\), the cellualr chain complex \(C_\ast^{CW}(X)\) is
+		\[0 \to \mathbb Z \to \dots \to \mathbb Z \xrightarrow{0} 0 \xrightarrow{0} \mathbb Z \xrightarrow{0} 0 \xrightarrow{0} \mathbb Z \to 0.\]
+	\end{enumerate}
+\end{example}
+
+Let us end this section with few remarks.
+So far we have learned spaces having certain special strucure on them.
+We have learned simplicial complex, \(\Delta\)-complex, and CW-complex.
+There are spaces that can be obtained from the "geometric realization" of "simplicial sets".
+Simplical sets are kind of graded sets having some sort of degeneracy maps and face maps between consecutive levels.
+We are not going to need them here, so we are not discussing them.
+
+The topological manifolds have CW-complex structure on them, but you don't always find a simplicial structure (aka. triangulation) on a topological manifold.
+The smooth manifolds a subclass of topological manifolds have simplical structure on them.
+We have the following figure:
+\[\begin{tikzcd}
+	\{\text{Simplical Complex}\} \arrow[d, hook] &  & \{C^{\infty}\text{-Manifolds}\} \arrow[ll, hook'] \arrow[ddd, hook] \\
+	\{\Delta\text{-Complex}\} \arrow[d, hook]    &  & \\
+	\{\text{GR of SS}\} \arrow[d, hook]          &  & \\
+	\{\text{CW-Complex}\}                        &  & \{\topsp\text{-Manifolds}\} \arrow[ll, hook']                      
+\end{tikzcd}\]
+Where by "GR of SS" we mean the Geometric realization of Simplical sets.
+Each of the maps in above figure is an inclusion, and non of these inclusions are an equality.
+Roughly speaking, for all of the above inclusions, the homotopy type of a space from the target is hit by some space from the source.
+But sometimes one care about more than just homotopy type. 
 
 
+
+ 
